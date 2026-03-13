@@ -1,17 +1,151 @@
----
+<html>
+<head>
+<title>MoveTrack</title>
 
----
+<style>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+body{
+  font-family: Arial;
+  margin:0;
+  background:#f4f6f8;
+}
+
+h1{
+  text-align:center;
+  padding:20px;
+}
+
+p{
+  text-align:center;
+}
+
+.dashboard{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+button{
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  border-radius:6px;
+  background:#4CAF50;
+  color:white;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#3e8e41;
+}
+
+input{
+  padding:8px;
+  margin-top:10px;
+  width:100%;
+}
+
+ul{
+  padding-left:20px;
+}
+
+@media(min-width:700px){
+  .dashboard{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>MoveTrack</h1>
+<p>Dashboard de entrenamiento</p>
+
+<div class="dashboard">
+
+<div class="card">
+<h2>Entrenamientos</h2>
+
+<ul id="listaEntrenamientos">
+<li>Lunes: correr</li>
+<li>Miercoles: gimnasio</li>
+<li>Viernes: bicicleta</li>
+</ul>
+
+<input id="nuevoEntrenamiento" placeholder="Nuevo entrenamiento">
+
+<button id="agregarEntrenamiento">Agregar</button>
+
+</div>
+
+<div class="card">
+<h2>Progreso</h2>
+
+<p id="km">Km esta semana: 0</p>
+
+<button id="sumar">Sumar 1 km</button>
+
+</div>
+
+<div class="card">
+<h2>Objetivo</h2>
+
+<p id="objetivoTexto">Correr 20 km esta semana</p>
+
+<input id="nuevoObjetivo" placeholder="Escribi tu objetivo">
+
+<button id="guardarObjetivo">Guardar objetivo</button>
+
+</div>
+
+</div>
+
+<script>
+
+let km = 0
+
+document.getElementById("sumar").onclick = function(){
+
+km = km + 1
+
+document.getElementById("km").textContent = "Km esta semana: " + km
+
+}
+
+document.getElementById("guardarObjetivo").onclick = function(){
+
+let texto = document.getElementById("nuevoObjetivo").value
+
+document.getElementById("objetivoTexto").textContent = texto
+
+}
+
+document.getElementById("agregarEntrenamiento").onclick = function(){
+
+let nuevo = document.getElementById("nuevoEntrenamiento").value
+
+let lista = document.getElementById("listaEntrenamientos")
+
+let li = document.createElement("li")
+
+li.textContent = nuevo
+
+lista.appendChild(li)
+
+}
+
+</script>
+
+</body>
 </html>
